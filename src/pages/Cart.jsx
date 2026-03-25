@@ -8,7 +8,7 @@ import CartItem from "../components/CartItem";
 
 const Cart = () => {
 
-  const {cart} = useSelector((state) => state);
+  const cart = useSelector((state) => state.cart);
   console.log("Printing Cart");
   console.log(cart);
   const [totalAmount, setTotalAmount] = useState(0);
@@ -18,13 +18,13 @@ const Cart = () => {
   }, [cart])
 
   return (
-    <div>
+    <div className="max-w-6xl min-h-[calc(100vh-5rem)] mx-auto p-4 md:p-6">
   {
     cart.length > 0  ? 
-    (<div>
+    (<div className="flex flex-col lg:flex-row gap-8 lg:gap-12 py-8">
 
 
-      <div>
+      <div className="flex-1 flex flex-col gap-5">
         {
           cart.map( (item,index) => {
             return <CartItem key={item.id} item={item} itemIndex={index} />
@@ -32,31 +32,33 @@ const Cart = () => {
         }
       </div>
 
-      <div>
+      <div className="w-full lg:max-w-sm">
 
-        <div>
-          <div>Your Cart</div>
-          <div>Summary</div>
-          <p>
-            <span>Total Items: {cart.length}</span>
+        <div className="sticky top-24 border border-slate-200 rounded-xl shadow-sm p-6 bg-white">
+          <div className="text-sm font-semibold uppercase tracking-[0.2em] text-green-700">Your Cart</div>
+          <div className="text-2xl font-bold text-slate-800 mt-1">Summary</div>
+          <p className="mt-5 text-slate-600">
+            <span className="font-medium">Total Items: {cart.length}</span>
           </p>
-        </div>
 
-        <div>
-          <p>Total Amount: ${totalAmount}</p>
-          <button>
+          <div className="mt-8 pt-6 border-t border-slate-200">
+          <p className="text-lg text-slate-800">
+            Total Amount: <span className="font-bold text-green-700">${totalAmount.toFixed(2)}</span>
+          </p>
+          <button className="w-full mt-5 bg-green-600 hover:bg-green-700 text-white font-semibold py-3 rounded-lg transition duration-300">
             CheckOut Now
           </button>
+          </div>
         </div>
 
       </div>
 
 
     </div>) : 
-    (<div>
-      <h1>Cart Empty</h1>
+    (<div className="min-h-[70vh] flex flex-col items-center justify-center gap-6">
+      <h1 className="text-3xl font-bold text-slate-800">Cart Empty</h1>
       <Link to={"/"}>
-        <button>
+        <button className="bg-slate-900 hover:bg-slate-700 text-white px-6 py-3 rounded-lg font-semibold transition duration-300">
           Shop Now
         </button>
       </Link>

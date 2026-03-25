@@ -1,9 +1,21 @@
+.spinner-container {
+  min-height: calc(100vh - 5rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .spinner {
   width: 56px;
   height: 56px;
   border-radius: 50%;
   background: conic-gradient(#0000 10%, #474bff);
   -webkit-mask: radial-gradient(
+    farthest-side,
+    #0000 calc(100% - 9px),
+    #000 0
+  );
+  mask: radial-gradient(
     farthest-side,
     #0000 calc(100% - 9px),
     #000 0
